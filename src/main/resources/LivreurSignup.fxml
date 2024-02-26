@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LivreurSignupController" stylesheets="@styles/livreurSignup.css">
+    <children>
+        <VBox spacing="10" layoutX="30" layoutY="60">
+            <children>
+                <Button fx:id="backButton" text="Back" onAction="#handleBackAction" layoutX="10" layoutY="10"/>
+                <Label text="Sign Up as a Livreur"/>
+                <TextField fx:id="txtNom" promptText="Nom"/>
+                <TextField fx:id="txtPrenom" promptText="Prénom"/>
+                <TextField fx:id="txtEmail" promptText="Email"/>
+                <PasswordField fx:id="txtPassword" promptText="Password"/>
+                <ComboBox fx:id="cmbAdresse" promptText="Adresse"/>
+                <ComboBox fx:id="cmbVehicule" promptText="Type of Vehicle"/>
+                <ComboBox fx:id="cmbZoneLivraison" promptText="Delivery Zone"/>
+                <TextField fx:id="txtNumTel" promptText="Phone Number"/>
+                <Button fx:id="btnSignup" text="Sign Up" onAction="#handleSignup"/>
+                <Label fx:id="lblStatus" textFill="RED"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GerantHomePageController" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles/gerant_first_page.css">
+    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogoutAction" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20"/>
+    <HBox fx:id="subscriptionCardsContainer" spacing="20" alignment="CENTER" layoutX="10" layoutY="10">
+    </HBox>
+</AnchorPane>

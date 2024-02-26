@@ -1,0 +1,42 @@
+.left-container {
+    -fx-background-color: #0077CC; /* Blue background for the entire left container */
+    -fx-padding: 20;
+    -fx-spacing: 10; /* Spacing between elements */
+    -fx-alignment: top-center;
+}
+
+.menu-section, .bottom-section {
+    -fx-alignment: top-center;
+    -fx-spacing: 5;
+}
+
+.text-style {
+    -fx-background-color: transparent; /* Makes buttons transparent */
+    -fx-text-fill: white; /* White text for "button" labels */
+    -fx-underline: true; /* Underline text */
+}
+
+.text-style:hover {
+    -fx-text-fill: #AADFFF; /* Lighter blue on hover for interactivity */
+}
+
+/* Adjusts MenuButton to look like a label */
+.menu-button .label {
+    -fx-text-fill: white; /* White text */
+    -fx-underline: true; /* Underline text */
+}
+
+.menu-button:hover .label {
+    -fx-text-fill: #AADFFF; /* Lighter blue on hover */
+}
+.card {
+    -fx-border-color: #2e2e2e;
+    -fx-border-width: 1;
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 15;
+    -fx-spacing: 10; /* Spacing between elements in the card */
+    -fx-alignment: center;
+}
+.back-button .graphic {
+    -fx-padding: 5px;
+}

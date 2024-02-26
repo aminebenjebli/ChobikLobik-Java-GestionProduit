@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.Integer?>
+<?import javafx.collections.FXCollections?>
+<AnchorPane fx:id="mainPane" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AvisController">
+    <children>
+        <ComboBox fx:id="comboGerant" layoutX="20.0" layoutY="20.0" prefWidth="200.0" promptText="Select Restaurant" />
+        <ComboBox fx:id="comboPlat" layoutX="20.0" layoutY="60.0" prefWidth="200.0" promptText="Select Plat" />
+        <TextArea fx:id="txtDescription" layoutX="20.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" promptText="Description" />
+        <ComboBox fx:id="comboEtoile" layoutX="20.0" layoutY="210.0" prefWidth="200.0" promptText="Rating">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <Integer fx:value="1" />
+                    <Integer fx:value="2" />
+                    <Integer fx:value="3" />
+                    <Integer fx:value="4" />
+                    <Integer fx:value="5" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button fx:id="btnSubmit" layoutX="20.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleSubmitAction" text="Submit Review" />
+    </children>
+</AnchorPane>

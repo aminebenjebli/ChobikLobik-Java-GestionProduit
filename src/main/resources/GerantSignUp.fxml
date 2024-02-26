@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox fx:id="signupForm" alignment="TOP_CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GerantSignupController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Button fx:id="backButton" text="Back" onAction="#handleBackAction" layoutX="10" layoutY="10"/>
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextArea fx:id="descriptionArea" promptText="Description"/>
+    <Button text="Upload Document" onAction="#handleUploadDocument"/>
+    <Button text="Upload Image" onAction="#handleUploadImage"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+    <Button text="Sign Up" onAction="#handleGerantSignUp"/>
+</VBox>

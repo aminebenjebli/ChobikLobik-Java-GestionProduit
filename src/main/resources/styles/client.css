@@ -1,0 +1,65 @@
+.root {
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f2f2f2;
+}
+
+.button {
+    -fx-background-color: #5a9bd8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);
+}
+
+
+.button:hover {
+    -fx-background-color: #4a85c4;
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-padding: 8px;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.label {
+    -fx-text-fill: #495057;
+    -fx-font-weight: normal;
+    -fx-font-size: 12px;
+    -fx-padding: 0 5px;
+    -fx-alignment: top-right; /* Align labels to the right */
+}
+
+.hbox {
+    -fx-spacing: 20px; /* Spacing between images and form */
+}
+
+.hbox > VBox {
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+}
+
+/* Specific style for the VBox containing form elements */
+.vbox-form {
+    -fx-padding: 20px;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-spacing: 15px; /* Spacing between form elements */
+    -fx-alignment: top-center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+#logoImage {
+    -fx-fit-width: 80px; /* Smaller logo size */
+    -fx-preserve-ratio: true;
+    -fx-margin-bottom: 20px; /* Space below the logo */
+}
+
+#myImageView {
+    -fx-max-height: 100%; /* Image takes full available height */
+    -fx-preserve-ratio: true;
+}

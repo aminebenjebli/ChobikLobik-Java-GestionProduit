@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+
+<?import java.net.URL?>
+
+<HBox fx:controller="controllers.SignUpClientController" xmlns:fx="http://javafx.com/fxml" spacing="20" alignment="CENTER">
+    <stylesheets>
+        <URL value="@styles/client.css" />
+    </stylesheets>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <VBox id="imageSection" alignment="CENTER" spacing="10" fillWidth="true" HBox.hgrow="ALWAYS">
+        <ImageView fx:id="logoImage" fitWidth="80" preserveRatio="true"/>
+        <ImageView fx:id="myImageView" fitWidth="300" fitHeight="450" preserveRatio="false"/>
+    </VBox>
+
+    <!-- Form Section -->
+    <VBox id="formSection" fx:id="formVBox" styleClass="vbox-form" alignment="TOP_CENTER">
+        <Label text="Sign Up" styleClass="form-title"/>
+        <TextField fx:id="nomClient" promptText="Nom"/>
+        <TextField fx:id="prenomClient" promptText="Prenom"/>
+        <TextField fx:id="emailClient" promptText="Email"/>
+        <PasswordField fx:id="passwordClient" promptText="Password"/>
+        <TextField fx:id="usernameClient" promptText="Username"/>
+        <ComboBox fx:id="adresseClient" promptText="Adresse"/>
+        <TextField fx:id="numTelClient" promptText="Numéro de Téléphone"/>
+        <Button text="Sign Up as Client" onAction="#handleSignUpClient"/>
+        <Button fx:id="backButton" text="Back" onAction="#handleBackAction"/>
+    </VBox>
+</HBox>

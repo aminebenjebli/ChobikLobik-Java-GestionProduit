@@ -1,0 +1,34 @@
+.root {
+    -fx-background-color: #ecf0f1;
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 25px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 5, 0 , 2 , 2 );
+    transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button:pressed {
+    -fx-background-color: #2471a3;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.1) , 3, 0 , 0 , 1 );
+    -fx-translate-y: 1px;
+}
+
+.vbox {
+    -fx-alignment: center;
+    -fx-spacing: 15px;
+    -fx-background-radius: 4px;
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/dashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminHomePageController">
+
+    <HBox spacing="10">
+        <!-- Left-side container -->
+        <VBox minWidth="134.0" prefHeight="478.0" prefWidth="134.0" styleClass="left-container" HBox.hgrow="NEVER">
+            <ImageView fx:id="logoImage" fitHeight="46.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox styleClass="menu-section">
+                <MenuButton prefHeight="61.0" prefWidth="94.0" styleClass="text-style" text="Tables">
+                    <items>
+                        <MenuItem fx:id="menuItemClient" text="Table Client" onAction="#handleClientTable"/>
+                        <MenuItem fx:id="menuItemRestaurants" text="Table Restaurants" onAction="#handleRestaurantTable"/>
+                        <MenuItem fx:id="menuItemLivreurs" text="Table Livreurs" onAction="#handleLivreurTable"/>
+                    </items>
+                </MenuButton>
+                <Label prefHeight="366.0" prefWidth="94.0" styleClass="text-style" text="Reclamation" />
+            </VBox>
+
+            <VBox prefHeight="186.0" prefWidth="94.0" styleClass="bottom-section" VBox.vgrow="ALWAYS">
+                <Label prefHeight="585.0" prefWidth="94.0" styleClass="text-style" text="Check Profile" />
+                <Label fx:id="logoutLabel" prefHeight="301.0" prefWidth="94.0" styleClass="text-style" text="Logout" onMouseClicked="#handleLogoutAction"/>
+            </VBox>
+        </VBox>
+
+        <!-- Content Section with Tables and Cards -->
+        <VBox HBox.hgrow="ALWAYS" spacing="10">
+            <!-- Cards Section -->
+            <HBox spacing="10">
+                <VBox styleClass="card" prefWidth="200" prefHeight="100">
+                    <Label text="Clients"/>
+                    <!-- Additional content for card here -->
+                </VBox>
+                <VBox styleClass="card" prefWidth="200" prefHeight="100">
+                    <Label text="Livreurs"/>
+                    <!-- Additional content for card here -->
+                </VBox>
+                <VBox styleClass="card" prefWidth="200" prefHeight="100">
+                    <Label text="Gerants"/>
+                    <!-- Additional content for card here -->
+                </VBox>
+            </HBox>
+
+        </VBox>
+    </HBox>
+</VBox>

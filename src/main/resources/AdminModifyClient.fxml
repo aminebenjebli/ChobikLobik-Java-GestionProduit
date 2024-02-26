@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminModifyClientController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <GridPane>
+        <Label text="Nom:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="nomField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Prénom:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="prenomField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Username:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="usernameField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Adresse:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="adresseField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Num Tel:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="numTelField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Button text="Save" onAction="#saveClient" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    </GridPane>
+</VBox>
