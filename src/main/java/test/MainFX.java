@@ -17,7 +17,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/avieclient.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/AddOffer.fxml"));
             primaryStage.setTitle("");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

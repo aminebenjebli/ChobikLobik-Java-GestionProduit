@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,10 +22,16 @@ import java.sql.SQLException;
 
 public class AjouterCategorieAmine {
     @FXML
-    private TextField ImageCategoryField;
+    private ImageView categoryImage;
+
+    @FXML
+    private ImageView logo;
 
     @FXML
     private TextField TypeCategoryField;
+
+    @FXML
+    private Button consulterCat;
 
     private final CategoryServices cs = new CategoryServices();
 
@@ -36,16 +44,13 @@ public class AjouterCategorieAmine {
     @FXML
     private void BtnAjouterCat(MouseEvent event) {
         String categoryType = TypeCategoryField.getText();
-        String categoryImage = ImageCategoryField.getText();
-
-        if (categoryType.isEmpty() || categoryImage.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Category Type and Image are required.");
+        if (categoryType.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Category Type  are required.");
             return;
         }
 
         Category category = new Category();
         category.setType(categoryType);
-        category.setImage(categoryImage);
 
         try {
             cs.ajouter(category);
@@ -59,7 +64,7 @@ public class AjouterCategorieAmine {
     @FXML
     void consulterCategorie(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/projets_aminebj/AfficherCat.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherCat.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Afficher Catégorie");
@@ -73,18 +78,6 @@ public class AjouterCategorieAmine {
 
 
     @FXML
-    void BtnSelectionnerImageCategory(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        // Filtrer les types de fichiers pour n'afficher que les images
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.jpeg", "*.png", "*.gif");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            ImageCategoryField.setText(((File) selectedFile).getAbsolutePath());
-        }
-
-    }
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

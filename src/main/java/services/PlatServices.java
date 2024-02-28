@@ -33,7 +33,7 @@ public class PlatServices implements IPlat<Plat> {
         }
     }
     public void ajouterWithCategory(Plat plat, int categoryId) throws SQLException {
-        String req = "INSERT INTO plat (id_category, id_restaurant, nom, image, description, prix) VALUES(?,?,?,?,?,?)";
+        String req = "INSERT INTO plat (id, id_restaurant, nom, image, description, prix) VALUES(?,?,?,?,?,?)";
         try (PreparedStatement pst = connection.prepareStatement(req)) {
             pst.setInt(1, categoryId);
             pst.setInt(2, plat.getId_restaurant());
@@ -77,11 +77,11 @@ public class PlatServices implements IPlat<Plat> {
     @Override
     public List<Plat> afficher() throws SQLException {
         List<Plat> plats = new ArrayList<>();
-        String req = "SELECT * FROM plat";
+        String req = "SELECT * FROM plat ";
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(req)) {
             while (rs.next()) {
-                Plat p = new Plat(rs.getInt("id_plat"), rs.getInt("id_category"), rs.getInt("id_restaurant"),
+                Plat p = new Plat(rs.getInt("id_plat"), rs.getInt("id"), rs.getInt("id_restaurant"),
                         rs.getString("nom"), rs.getString("image"), rs.getString("description"), rs.getFloat("prix"));
                 plats.add(p);
             }
@@ -94,7 +94,7 @@ public class PlatServices implements IPlat<Plat> {
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(req)) {
             while (rs.next()) {
-                categories.add(new Category(rs.getInt("id"), rs.getString("type"), rs.getString("image")));
+                categories.add(new Category(rs.getInt("id"), rs.getString("type")));
             }
         }
         return categories;
@@ -147,7 +147,59 @@ public class PlatServices implements IPlat<Plat> {
         }
         return plats;
     }
+    public List<Plat> fetchAllPlats() throws SQLException {
+        List<Plat> plats = new ArrayList<>();
+        String sql = "SELECT p.id_plat, p.id, p.id_restaurant, p.nom, p.image, p.description, p.prix, c.type FROM plat p JOIN category c ON p.id = c.id";
+        try (PreparedStatement pst = connection.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                Category category = new Category(rs.getInt("id"), rs.getString("type"));
+                Plat plat = new Plat(
+                        rs.getInt("id_plat"),
+                        rs.getInt("id"),
+                        rs.getInt("id_restaurant"),
+                        rs.getString("nom"),
+                        rs.getString("image"),
+                        rs.getString("description"),
+                        rs.getFloat("prix")
+                );
+                plat.setCategory(category); // Set the category for the plat
+                plats.add(plat);
+
+            }
+        }
+        return plats;
+    }
+    public List<Plat> searchPlats(String  txtSearchName) throws SQLException {
+        List<Plat> plats = new ArrayList<>();
+        String sql = "SELECT p.id_plat, p.id, p.id_restaurant, p.nom, p.image, p.description, p.prix, c.type " +
+                "FROM plat p JOIN category c ON p.id = c.id " +
+                "WHERE p.nom LIKE ? OR c.type LIKE ?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, "%" +  txtSearchName + "%");
+            pst.setString(2, "%" +  txtSearchName + "%");
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Category category = new Category(rs.getInt("id"), rs.getString("type"));
+                    Plat plat = new Plat(
+                            rs.getInt("id_plat"),
+                            rs.getInt("id"),
+                            rs.getInt("id_restaurant"),
+                            rs.getString("nom"),
+                            rs.getString("image"),
+                            rs.getString("description"),
+                            rs.getFloat("prix")
+                    );
+                    plat.setCategory(category); // Set the category for the plat
+                    plats.add(plat);
+                }
+            }
+        }
+        return plats;
+    }
+
+    }
 
 
 
-}
+

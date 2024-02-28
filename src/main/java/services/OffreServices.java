@@ -1,10 +1,12 @@
 package services;
 
 import models.Offre;
+import models.Plat;
 import utils.MyDatabase;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,40 +19,38 @@ public class OffreServices implements IOffre<Offre>{
         this.connection = MyDatabase.getInstance().getConnection();
     }
 
-    @Override
     public void ajouter(Offre offre) throws SQLException {
-        String req = "INSERT INTO offre_resto (percentage, id_resto, id_plat, image, date_debut, date_fin) VALUES(?, ?, ?, ?, ?, ?)";
 
+    }
+
+    public void ajouter(Offre offre, int id_plat) throws SQLException {
+        // Assume the category ID is valid and the caller of this method has verified it
+        String req = "INSERT INTO offre_resto (id_plat, percentage, new_price, date_debut, date_fin) VALUES(?,?,?,?,?)";
         try (PreparedStatement pst = connection.prepareStatement(req)) {
-            System.out.println("Date de début avant conversion : " + offre.getDate_debut());
-            System.out.println("Date de fin avant conversion : " + offre.getDate_fin());
+            pst.setInt(1, id_plat); // Set the category ID
+            pst.setInt(2, offre.getPercentage());
+            pst.setFloat(3, offre.getNew_price());
+            Timestamp timestampDebut = offre.getDate_debut() == null ? null : new Timestamp(offre.getDate_debut().getTime());
+            Timestamp timestampFin = offre.getDate_fin() == null ? null : new Timestamp(offre.getDate_fin().getTime());
+            pst.setTimestamp(4, timestampDebut);
+            pst.setTimestamp(5, timestampFin);
+            int rowsInserted = pst.executeUpdate();
 
-            pst.setInt(1, offre.getPercentage());
-            pst.setInt(2, offre.getId_resto());
-            pst.setInt(3, offre.getId_plat());
-            pst.setString(4, offre.getImage());
-            pst.setTimestamp(5, new Timestamp(offre.getDate_debut().getTime()));
-            pst.setTimestamp(6, new Timestamp(offre.getDate_fin().getTime()));
-
-            System.out.println("Date de début après conversion : " + new Timestamp(offre.getDate_debut().getTime()));
-            System.out.println("Date de fin après conversion : " + new Timestamp(offre.getDate_fin().getTime()));
-
-            pst.executeUpdate();
         }
-
     }
 
     @Override
     public void modifier(Offre offre) throws SQLException {
-        String req = "update offre_resto set percentage = ? , id_resto = ? , id_plat = ? , image = ? , date_debut = ? , date_fin = ?   where id = ?";
+        String req = "update offre_resto set percentage = ? , new_price= ? ,id_resto = ? , id_plat = ? , image = ? , date_debut = ? , date_fin = ?   where id = ?";
         try (PreparedStatement pst = connection.prepareStatement(req)) {
             pst.setInt(1, offre.getPercentage());
-            pst.setInt(2, offre.getId_resto());
-            pst.setInt(3, offre.getId_plat());
-            pst.setString(4, offre.getImage());
-            pst.setTimestamp(5, new Timestamp(offre.getDate_debut().getTime()));
-            pst.setTimestamp(6, new Timestamp(offre.getDate_fin().getTime()));
-            pst.setInt(7, offre.getId());
+            pst.setFloat(2, offre.getNew_price());
+            pst.setInt(3, offre.getId_resto());
+            pst.setInt(4, offre.getId_plat());
+            pst.setString(5, offre.getImage());
+            pst.setTimestamp(6, new Timestamp(offre.getDate_debut().getTime()));
+            pst.setTimestamp(7, new Timestamp(offre.getDate_fin().getTime()));
+            pst.setInt(8, offre.getId());
             pst.executeUpdate();
         }
     }
@@ -85,6 +85,7 @@ public class OffreServices implements IOffre<Offre>{
             O.setId_resto(rs.getInt("id_resto"));
             O.setId_plat(rs.getInt("id_plat"));
             O.setImage(rs.getString("image"));
+            O.setNew_price(rs.getFloat("new_price"));
 
 
             Timestamp timestampDebut = rs.getTimestamp("date_debut");

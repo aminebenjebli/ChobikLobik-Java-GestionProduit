@@ -8,8 +8,9 @@ public class Offre {
     private String image;
     private Date date_debut;
     private Date date_fin;
+    private float new_price;
 
-    public Offre(int id, int id_resto, int id_plat, int percentage, String image, Date date_debut, Date date_fin) {
+    public Offre(int id, int id_resto, int id_plat, int percentage, float new_price ,String image, Date date_debut, Date date_fin) {
         this.id = id;
         this.id_resto = id_resto;
         this.id_plat = id_plat;
@@ -17,9 +18,18 @@ public class Offre {
         this.image = image;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
+        this.new_price=new_price;
     }
 
-    public Offre(int id_resto, int id_plat, int percentage, String image, Date date_debut, Date date_fin) {
+    public float getNew_price() {
+        return new_price;
+    }
+
+    public void setNew_price(float new_price) {
+        this.new_price = new_price;
+    }
+
+    public Offre(int id_resto, int id_plat, int percentage, float new_price, String image, Date date_debut, Date date_fin) {
         this.id_resto = id_resto;
         this.id_plat = id_plat;
         this.percentage = percentage;
@@ -97,6 +107,7 @@ public class Offre {
                 ", image='" + image + '\'' +
                 ", date_debut=" + date_debut +
                 ", date_fin=" + date_fin +
+                ", new_price=" + new_price +
                 '}';
     }
 }

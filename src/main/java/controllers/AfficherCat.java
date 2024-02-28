@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import models.Category;
 import services.CategoryServices;
@@ -34,16 +35,18 @@ public class AfficherCat {
     private TableColumn<Category, Void> actionColumnCategorie;
 
     @FXML
-    private TableColumn<Category, String> imageColumnCategorie;
+    private TableColumn<Category, String> typeColumnCategorie;
+    @FXML
+    private ImageView imageview;
 
     @FXML
-    private TableColumn<Category, String> typeColumnCategorie;
+    private ImageView imageview2;
+
     private final CategoryServices cs = new CategoryServices();
 
     @FXML
     void initialize() {
         typeColumnCategorie.setCellValueFactory(new PropertyValueFactory<>("type"));
-        imageColumnCategorie.setCellValueFactory(new PropertyValueFactory<>("image"));
         setupActionColumn();
         refreshCategoryList();
         // Ajouter un ChangeListener au champ de texte Rechercher

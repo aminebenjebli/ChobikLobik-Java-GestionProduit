@@ -22,21 +22,19 @@ public class CategoryServices implements ICategory<Category> {
 
     @Override
     public void ajouter(Category category) throws SQLException {
-        String req = "INSERT INTO category (type,image) VALUES(?,?)";
+        String req = "INSERT INTO category (type) VALUES(?)";
         try(PreparedStatement pst = connection.prepareStatement(req)){
             pst.setString(1, category.getType());
-            pst.setString(2,category.getImage());
             pst.executeUpdate();
         }
     }
 
     @Override
     public void modifier(Category category) throws SQLException {
-        String sql = "update category set type = ? , image= ? where id = ?";
+        String sql = "update category set type = ? where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,category.getType());
-        preparedStatement.setString(2,category.getImage());
-        preparedStatement.setInt(3,category.getId());
+        preparedStatement.setInt(2,category.getId());
         preparedStatement.executeUpdate();
     }
 
@@ -57,7 +55,6 @@ public class CategoryServices implements ICategory<Category> {
                 Category c = new Category();
                 c.setId(rs.getInt("id"));
                 c.setType(rs.getString("type"));
-                c.setImage(rs.getString("image"));
                 categories.add(c);
             }
         }
@@ -74,7 +71,6 @@ public class CategoryServices implements ICategory<Category> {
                     Category c = new Category();
                     c.setId(rs.getInt("id"));
                     c.setType(rs.getString("type"));
-                    c.setImage(rs.getString("image"));
                     categories.add(c);
                 }
             }

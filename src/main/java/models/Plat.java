@@ -5,6 +5,19 @@ public class Plat {
     private String nom , image ;
     private String  description ;
     private float prix ;
+    private Category category; // Add this line to include a reference to Category
+
+    // Constructors, getters, and setters
+
+    // Add getter and setter for category
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 
     public Plat() {
     }
@@ -91,14 +104,6 @@ public class Plat {
 
     @Override
     public String toString() {
-        return "Plat{" +
-                "id_plat=" + id_plat +
-                ", id_category=" + id +
-                ", id_restaurant=" + id_restaurant +
-                ", nom='" + nom + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                ", prix=" + prix +
-                '}';
+        return this.nom; // Assuming 'nom' is the name of the dish
     }
 }

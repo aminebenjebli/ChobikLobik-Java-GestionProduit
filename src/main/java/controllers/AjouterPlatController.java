@@ -4,12 +4,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import models.Category;
 import models.Plat;
 import services.PlatServices;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AjouterPlatController {
@@ -28,7 +35,11 @@ public class AjouterPlatController {
     private Button btnAjouterPlat;
     @FXML
     private Text actionStatus;
+    @FXML
+    private ImageView imageView;
 
+    @FXML
+    private Button consulterPlats;
     private PlatServices platServices;
 
     @FXML
@@ -38,7 +49,7 @@ public class AjouterPlatController {
             ObservableList<Category> categoryList = FXCollections.observableArrayList(platServices.fetchCategories());
             comboCategory.setItems(categoryList);
         } catch (SQLException e) {
-            actionStatus.setText("Error loading categories: " + e.getMessage());
+            actionStatus.setText("Erreur lors du chargement des catégories: " + e.getMessage());
         }
         comboCategory.setCellFactory(lv -> new ListCell<Category>() {
             @Override
@@ -54,31 +65,71 @@ public class AjouterPlatController {
                 setText(empty ? null : category.getType());
             }
         });
-    }
 
+    }
+    @FXML
+    void consulterPlat(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPlats.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Afficher Catégorie");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Error loading AfficherPlats.fxml");
+        }
+    }
     @FXML
     void handleAjouterPlatAction(ActionEvent event) {
         try {
             Category selectedCategory = comboCategory.getValue();
             if (selectedCategory == null) {
-                actionStatus.setText("Please select a category.");
+                showAlert(Alert.AlertType.WARNING, "Avertissement", "Veuillez sélectionner une catégorie.");
                 return;
             }
+
+            String nom = txtNomPlat.getText();
+            String image = txtImagePlat.getText();
+            String description = txtDescriptionPlat.getText();
+            String prixText = txtPrixPlat.getText();
+
+            if (nom.isEmpty() || image.isEmpty() || description.isEmpty() || prixText.isEmpty()) {
+                showAlert(Alert.AlertType.WARNING, "Avertissement", "Veuillez remplir tous les champs.");
+                return;
+            }
+            //controle de saisie for price > 0
+            float prix = Float.parseFloat(prixText);
+            if (prix <= 0) {
+                showAlert(Alert.AlertType.WARNING, "Avertissement", "Le prix doit être supérieur à zéro.");
+                return;
+            }
+
             Plat newPlat = new Plat();
-            newPlat.setNom(txtNomPlat.getText());
-            newPlat.setImage(txtImagePlat.getText());
-            newPlat.setDescription(txtDescriptionPlat.getText());
-            newPlat.setPrix(Float.parseFloat(txtPrixPlat.getText()));
+            newPlat.setNom(nom);
+            newPlat.setImage(image);
+            newPlat.setDescription(description);
+            newPlat.setPrix(prix);
             newPlat.setId_restaurant(getSelectedRestaurantId());
+
             platServices.ajouter(newPlat, selectedCategory.getId());
-            actionStatus.setText("Plat added successfully.");
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Plat ajouté avec succès.");
         } catch (NumberFormatException e) {
-            actionStatus.setText("Invalid number format in price.");
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Format de nombre invalide pour le prix.");
         } catch (SQLException e) {
-            actionStatus.setText("Error adding plat: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ajout du plat: " + e.getMessage());
         } catch (Exception e) {
-            actionStatus.setText("Error: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur: " + e.getMessage());
         }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     private int getSelectedRestaurantId() {

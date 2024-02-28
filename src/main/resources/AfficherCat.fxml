@@ -3,24 +3,34 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="692.0" prefWidth="1103.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherCat">
+<AnchorPane prefHeight="692.0" prefWidth="1103.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherCat">
    <children>
-      <TableView fx:id="TableViewCategory" layoutX="363.0" layoutY="259.0" prefHeight="230.0" prefWidth="707.0" style="-fx-background-color: #555555;">
+      <ImageView fx:id="imageview2" fitHeight="570.0" fitWidth="473.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/The%20Most%20Ridiculous%20New%20Fast%20Food%20Menu%20Items%20of%202018.jpeg" />
+         </image></ImageView>
+      <TableView fx:id="TableViewCategory" layoutX="471.0" layoutY="256.0" prefHeight="452.0" prefWidth="632.0" style="-fx-background-color: #555555;">
          <columns>
-            <TableColumn fx:id="typeColumnCategorie" prefWidth="171.0" text="TYPE" />
-            <TableColumn fx:id="imageColumnCategorie" prefWidth="247.0" text="IMAGE" />
-            <TableColumn fx:id="actionColumnCategorie" prefWidth="287.0" text="Actions" />
+            <TableColumn fx:id="typeColumnCategorie" prefWidth="299.0" text="TYPE" />
+            <TableColumn fx:id="actionColumnCategorie" prefWidth="408.0" text="Actions" />
          </columns>
       </TableView>
-      <TextField fx:id="RechercherCategorie" layoutX="842.0" layoutY="76.0" prefHeight="25.0" prefWidth="198.0" promptText="Rechercher" style="-fx-background-color: #555555;" />
-      <BorderPane prefHeight="123.0" prefWidth="1103.0">
-         <top>
-            <Pane prefHeight="50.0" prefWidth="1103.0" style="-fx-background-color: #0000AA;" BorderPane.alignment="CENTER" />
-         </top>
-      </BorderPane>
+      <TextField fx:id="RechercherCategorie" layoutX="891.0" layoutY="231.0" prefHeight="25.0" prefWidth="198.0" promptText="Rechercher ..." style="-fx-background-color: #555555;" />
+      <ImageView fx:id="imageview" fitHeight="89.0" fitWidth="85.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Projets_AmineBJ/src/src/main/resources/images/Choubikloubik.png" />
+         </image>
+      </ImageView>
+      <Text fontSmoothingType="LCD" layoutX="21.0" layoutY="647.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Categories : " wrappingWidth="427.13671875">
+         <font>
+            <Font name="Javanese Text" size="46.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
