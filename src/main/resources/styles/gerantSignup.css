@@ -1,0 +1,67 @@
+.root {
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f2f2f2;
+}
+
+.button {
+    -fx-background-color: #5a9bd8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-background-color: #4a85c4;
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-padding: 8px;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+
+
+
+
+/* Existing styles */
+
+/* Additional or modified styles */
+#signupForm {
+    -fx-padding: 20px;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+/* Ensure that the image does not take too much space and is properly aligned */
+#signupImage {
+    -fx-max-width: 300px; /* Limit the width of the image */
+    -fx-max-height: 400px; /* Limit the height of the image */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.hbox {
+    -fx-spacing: 20px;
+    -fx-alignment: center; /* Center the HBox content */
+}
+
+/* It's a good practice to set the alignment and spacing within the VBox */
+.vbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.form-container {
+    -fx-background-color: #EEE; /* A light grey background */
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+

@@ -17,12 +17,13 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/AddOffer.fxml"));
-            primaryStage.setTitle("");
-            primaryStage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("/Showroom.fxml"));
+            primaryStage.setTitle("ChoubikLoubik");
+            primaryStage.setScene(new Scene(root, 600, 500)); // Set initial size if necessary
             primaryStage.show();
 
-            // Start the subscription updater
+            primaryStage.centerOnScreen();
+
             timerUtility = new TimerUtility();
             timerUtility.startSubscriptionUpdater();
         } catch (Exception e) {

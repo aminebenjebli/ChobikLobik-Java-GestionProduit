@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="874.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminHomePageController">
+   <children>
+      <BorderPane layoutX="82.0" layoutY="70.0" prefHeight="740.0" prefWidth="1088.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuButton layoutX="24.0" layoutY="46.0" prefHeight="61.0" prefWidth="153.0" styleClass="text-style" text="Tables" underline="true" wrapText="true">
+                     <items>
+                        <MenuItem fx:id="menuItemClient" onAction="#openTable" text="Table Client" />
+                        <MenuItem fx:id="menuItemRestaurants" onAction="#openTable" text="Table Restaurants" />
+                        <MenuItem fx:id="menuItemLivreurs" onAction="#openTable" text="Table Livreurs" />
+                     </items>
+                     <font>
+                        <Font name="MV Boli" size="26.0" />
+                     </font>
+                  </MenuButton>
+                  <Label layoutX="32.0" layoutY="121.0" prefHeight="251.0" prefWidth="118.0" styleClass="text-style" text="Reclamation" underline="true">
+                     <font>
+                        <Font name="MV Boli" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="281.0" onMouseClicked="#handleCheckProfileAction" prefHeight="182.0" prefWidth="129.0" styleClass="text-style" text="Check Profile" underline="true">
+                     <font>
+                        <Font name="MV Boli" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="logoutLabel" layoutX="47.0" layoutY="444.0" onMouseClicked="#handleLogoutAction" prefHeight="126.0" prefWidth="88.0" styleClass="text-style" text="Logout" underline="true">
+                     <font>
+                        <Font name="MV Boli" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <top>
+            <AnchorPane prefHeight="129.0" prefWidth="953.0" style="-fx-background-color: #E5DACA;" BorderPane.alignment="CENTER">
+               <children>
+                  <Circle fill="LIGHTBLUE" layoutX="161.0" layoutY="52.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="114.0" layoutY="92.0" prefHeight="32.0" prefWidth="90.0" text="Aziz Kaboudi" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Courier New" size="12.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="301.0" layoutY="17.0" prefHeight="95.0" prefWidth="223.0" style="-fx-background-color: lightblue;" styleClass="card">
+                     <children>
+                        <Label prefHeight="43.0" prefWidth="87.0" text="Incomes">
+                           <font>
+                              <Font name="Trebuchet MS" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fullIncomeLabel" prefHeight="22.0" prefWidth="199.0" text="Full Income: $">
+                           <font>
+                              <Font name="Trebuchet MS" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="netIncomeLabel" prefHeight="33.0" prefWidth="199.0" text="Net Income: $">
+                           <font>
+                              <Font name="Trebuchet MS" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="555.0" layoutY="20.0" prefHeight="87.0" prefWidth="240.0" style="-fx-background-color: lightblue;" styleClass="card">
+                     <children>
+                        <Label prefHeight="40.0" prefWidth="178.0" text="Total Users">
+                           <font>
+                              <Font name="Trebuchet MS" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalUsersLabel" prefHeight="48.0" prefWidth="176.0" text="Total Users: 0">
+                           <font>
+                              <Font name="Trebuchet MS" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="823.0" layoutY="17.0" prefHeight="90.0" prefWidth="236.0" style="-fx-background-color: lightblue;" styleClass="card">
+                     <children>
+                        <Label prefHeight="54.0" prefWidth="151.0" text="Donations">
+                           <font>
+                              <Font name="Trebuchet MS" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="donationsLabel" prefHeight="51.0" prefWidth="175.0" text="Donations: $">
+                           <font>
+                              <Font name="Trebuchet MS" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <ImageView fx:id="logoImage" fitHeight="54.0" fitWidth="67.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <Pane prefHeight="750.0" prefWidth="1024.0" style="-fx-background-color: lighblue;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="TableResto" layoutX="-2.0" prefHeight="750.0" prefWidth="1024.0" />
+                  <Pane fx:id="TableClient" layoutX="-2.0" prefHeight="750.0" prefWidth="1024.0" />
+                  <Pane fx:id="TableLiv" layoutX="-1.0" prefHeight="750.0" prefWidth="1024.0" />
+                  <LineChart fx:id="usersChart" layoutX="24.0" layoutY="170.0" prefHeight="364.0" prefWidth="781.0">
+                     <xAxis>
+                        <CategoryAxis fx:id="xAxis" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis fx:id="yAxis" />
+                     </yAxis>
+                  </LineChart>
+                  <ComboBox fx:id="timeIntervalComboBox" editable="true" prefHeight="46.0" prefWidth="162.0" promptText="Time" styleClass="Combo-Box" stylesheets="@styles/addPlat.css">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Days" />
+                           <String fx:value="Weeks" />
+                           <String fx:value="Months" />
+                           <String fx:value="Years" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

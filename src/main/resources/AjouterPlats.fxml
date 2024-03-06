@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="654.0" prefWidth="1098.0" style="-fx-background-color: lightblue;" stylesheets="@styles/AjoutPlat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterPlatController">
+<AnchorPane prefHeight="654.0" prefWidth="1098.0" stylesheets="@styles/addPlat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterPlatController">
    <children>
-      <Button layoutX="322.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleAjouterPlatAction" prefHeight="39.0" prefWidth="143.0" styleClass="green-button" text="Ajouter Plat" />
-      <TextField fx:id="txtNomPlat" layoutX="298.0" layoutY="142.0" />
-      <TextField fx:id="txtImagePlat" layoutX="298.0" layoutY="214.0" prefHeight="30.0" prefWidth="277.0" />
-      <TextField fx:id="txtDescriptionPlat" layoutX="298.0" layoutY="258.0" prefHeight="81.0" prefWidth="173.0" />
+      <ImageView fitHeight="80.0" fitWidth="82.0" layoutX="34.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="goBackButton" layoutX="17.0" layoutY="595.0" onAction="#handleGoBack" text="Go Back" />
+      <Button layoutX="298.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleAjouterPlatAction" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: green;" text="Ajouter Plat" />
+      <TextField fx:id="txtNomPlat" layoutX="296.0" layoutY="137.0" />
+      <TextField fx:id="txtImagePlat" editable="false" layoutX="298.0" layoutY="214.0" />
+      <Button layoutX="608.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleBrowseAction" text="Browse..." />
+      <TextField fx:id="txtDescriptionPlat" layoutX="298.0" layoutY="286.0" />
       <TextField fx:id="txtPrixPlat" layoutX="298.0" layoutY="358.0" />
       <ComboBox fx:id="comboCategory" layoutX="298.0" layoutY="430.0" prefWidth="150.0" />
-      <Text layoutX="149.0" layoutY="159.0" text="Nom Plat:">
-         <font>
-            <Font name="Javanese Text" size="20.0" />
-         </font></Text>
-      <Text layoutX="133.0" layoutY="233.0" text="Image Plat:">
-         <font>
-            <Font name="Javanese Text" size="20.0" />
-         </font></Text>
-      <Text layoutX="122.0" layoutY="303.0" text="Description Plat:">
-         <font>
-            <Font name="Javanese Text" size="20.0" />
-         </font></Text>
-      <Text layoutX="150.0" layoutY="375.0" text="Prix Plat:">
-         <font>
-            <Font name="Javanese Text" size="20.0" />
-         </font></Text>
-      <Text layoutX="133.0" layoutY="447.0" text="Catégorie Plat:">
-         <font> <Font name="Javanese Text" size="20.0" /> </font></Text>
-      <Button fx:id="consulterPlats" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="929.0" layoutY="26.0" mnemonicParsing="false" onAction="#consulterPlat" prefHeight="30.0" prefWidth="143.0" styleClass="green-button" text="Consulter Les Plats" />
-
-      <Text fx:id="actionStatus" layoutX="322.0" layoutY="520.0" /> <!-- Ensure this matches the fx:id in your controller -->
-      <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="103.0" layoutX="7.0" layoutY="6.0" preserveRatio="true">
+      <Text layoutX="122.0" layoutY="159.0" text="Nom Plat" />
+      <Text layoutX="122.0" layoutY="231.0" text="Image Plat" />
+      <Text layoutX="122.0" layoutY="303.0" text="Description Plat" />
+      <Text layoutX="122.0" layoutY="375.0" text="Prix Plat" />
+      <Text layoutX="122.0" layoutY="447.0" text="Catégorie Plat" />
+      <Text fx:id="actionStatus" layoutX="322.0" layoutY="520.0" />
+      <ImageView fitHeight="80.0" fitWidth="82.0" layoutX="25.0" layoutY="7.0">
          <image>
-            <Image url="@../../../../../../../../../Projets_AmineBJ/src/src/main/resources/images/Choubikloubik.png" />
-         </image></ImageView>
+            <Image url="@images/choubikloubik.png" />
+         </image>
+      </ImageView>
+
    </children>
+   <styleClass>
+      <String fx:value="Button" />
+      <String fx:value="Combo-Box" />
+      <String fx:value="label" />
+      <String fx:value="text" />
+   </styleClass>
 </AnchorPane>

@@ -32,7 +32,7 @@ public class PaiementGerantController {
     private double selectedOfferPrice =  2000; // This should be set based on the subscription selected
 
     public PaiementGerantController() {
-        Stripe.apiKey = "api key or stripe";
+        Stripe.apiKey = "sk_test_51NDzz7BQRNc8ucGL4wXekcQDnGPdEPmJBNQxiQWzlgQl74PueJ8A9E8BjMJXnQahcafVDFI27bDaXIrrxjA2fghm000WDPqShJ";
     }
 
     @FXML
@@ -160,10 +160,7 @@ public class PaiementGerantController {
         return PaymentIntent.create(params);
     }
 
-    private int determineSubscriptionTypeId() {
-        // Placeholder method to determine the subscription type ID
-        return  1; // Assuming  1 is the ID for the selected subscription type
-    }
+
 
     private void showPaymentSuccessAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

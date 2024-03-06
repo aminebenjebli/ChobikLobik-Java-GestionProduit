@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: "Arial";
+}
+
+.Button {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #256874, #247D8C);
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+
+.Button:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #66CCDE, #17A9C3);
+    -fx-text-fill: black;
+}
+
+.TableView {
+    -fx-base: #247D8C;
+    -fx-control-inner-background: #256874;
+    -fx-background-color: #256874;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+    -fx-selection-bar: #66CCDE;
+    -fx-selection-bar-non-focused: #256874;
+}
+
+.TableView .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.TableView .column-header, .TableView .column-header .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.TableView .table-row-cell {
+    -fx-background-color: #256874;
+    -fx-table-cell-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+.TableView .table-row-cell:filled:selected, .TableView .table-row-cell:filled:selected .text {
+    -fx-background-color: #66CCDE;
+    -fx-text-fill: white;
+}
+
+.TableView .table-row-cell .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 10 5 10 5;
+}
+
+.TableCell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.scroll-bar {
+    -fx-background-color: #247D8C;
+    -fx-background-insets: 0, 0, 1, 2;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #66CCDE;
+    -fx-background-insets: 0, 2, 5;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: #247D8C;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-insets: 0 0 0 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-insets: 0 0 0 0;
+}

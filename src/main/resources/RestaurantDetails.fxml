@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="mainContainer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RestaurantDetailsController" stylesheets="styles/Clientdetailscard.css">
+    <Button text="Reserve Table" onAction="#handleReserveTable" />
+    <ScrollPane fx:id="scrollPane" fitToWidth="true">
+        <VBox fx:id="cardsContainer" spacing="10">
+            <!-- Cards will be added here dynamically -->
+        </VBox>
+    </ScrollPane>
+</VBox>

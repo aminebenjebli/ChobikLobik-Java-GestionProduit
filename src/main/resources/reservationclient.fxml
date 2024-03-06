@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationClientController">
+    <ComboBox fx:id="tableComboBox" promptText="Select Table" />
+    <DatePicker fx:id="datePicker" />
+    <Button text="Reserve" onAction="#handleReservation" />
+    <Button fx:id="goBackButton" onAction="#handleGoBack" styleClass="Button" text="Go Back" />
+
+</VBox>

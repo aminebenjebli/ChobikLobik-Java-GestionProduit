@@ -204,6 +204,72 @@ public class GerantService implements IGerant {
         return false; // Default to not active if no records found
     }
 
+    public List<Gerant> getRandomGerants(int limit) throws SQLException {
+        List<Gerant> gerants = new ArrayList<>();
+        String sql = "SELECT * FROM gerant ORDER BY RAND() LIMIT ?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setInt(1, limit);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                // Assume Gerant has a constructor that matches this fetching
+                Gerant gerant = new Gerant(
+                        rs.getInt("id"), rs.getString("username"), rs.getString("name"),
+                        rs.getString("description"), rs.getString("document"),
+                        rs.getString("image"), rs.getString("email"),
+                        rs.getString("password"), rs.getTimestamp("date")
+                );
+                gerants.add(gerant);
+            }
+        }
+        return gerants;
+    }
+    public List<Gerant> filterGerantsByKeyword(String keyword) throws SQLException {
+        List<Gerant> filteredGerants = new ArrayList<>();
+        String sql = "SELECT * FROM gerant WHERE name LIKE ?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, "%" + keyword + "%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                // Construct Gerant object from ResultSet
+                Gerant gerant = new Gerant(); // Simplified, fill in details
+                filteredGerants.add(gerant);
+            }
+        }
+        return filteredGerants;
+    }
+    public List<Gerant> getAllGerants() throws SQLException {
+        List<Gerant> gerants = new ArrayList<>();
+        String sql = "SELECT id, name, description, image FROM gerant";
+        try (PreparedStatement pst = connection.prepareStatement(sql); ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                Gerant gerant = new Gerant();
+                gerant.setId(rs.getInt("id"));
+                gerant.setName(rs.getString("name"));
+                gerant.setDescription(rs.getString("description"));
+                gerant.setImage(rs.getString("image"));
+                gerants.add(gerant);
+            }
+        }
+        return gerants;
+    }
+
+    public List<Gerant> searchGerantsByName(String name) throws SQLException {
+        List<Gerant> gerants = new ArrayList<>();
+        String sql = "SELECT * FROM gerant WHERE name LIKE ?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, "%" + name + "%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                gerants.add(new Gerant(rs.getInt("id"), rs.getString("username"), rs.getString("name"),
+                        rs.getString("description"), rs.getString("document"), rs.getString("image"),
+                        rs.getString("email"), rs.getString("password"), rs.getTimestamp("date")));
+            }
+        }
+        return gerants;
+    }
+
+
+
 
 
 }

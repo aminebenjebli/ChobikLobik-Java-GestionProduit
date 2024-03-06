@@ -1,36 +1,17 @@
-.root {
-    -fx-background-color: #ecf0f1;
-    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-}
-
-.button {
-    -fx-background-color: #3498db;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+.Button {
     -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #256874, #247D8C );
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
 }
-
-.button:hover {
-    -fx-background-color: #2980b9;
-}
-
-.text-field, .password-field {
-    -fx-padding: 8px;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 4px;
-}
-
-.text-field:focused, .password-field:focused {
-    -fx-border-color: #3498db;
-}
-
-.text-field.error, .password-field.error {
-    -fx-border-color: #e74c3c;
+.Button:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #66CCDE , #17A9C3 );
+    -fx-text-fill: black;
 }
 
 .label.error {
     -fx-text-fill: #e74c3c;
 }
+ 

@@ -1,0 +1,48 @@
+.Button {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #256874, #247D8C );
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+.Button:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #66CCDE , #17A9C3 );
+    -fx-text-fill: black;
+}
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:   rgb(50, 141, 158);
+}
+.table-view .column-header .label{
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-text-fill: #000000;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+}
+.table-row-cell:selected .text {
+    -fx-fill : linear-gradient(to left, #66CCDE , #17A9C3); ;
+
+}
+.Combo-Box:hover
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
+}
+.Combo-Box:pressed
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
+}

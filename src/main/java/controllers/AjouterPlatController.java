@@ -4,135 +4,87 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 import models.Category;
 import models.Plat;
 import services.PlatServices;
-
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+
 
 public class AjouterPlatController {
+    @FXML private TextField txtNomPlat, txtImagePlat, txtDescriptionPlat, txtPrixPlat;
+    @FXML private ComboBox<Category> comboCategory;
+    @FXML private Text actionStatus;
 
-    @FXML
-    private TextField txtNomPlat;
-    @FXML
-    private TextField txtImagePlat;
-    @FXML
-    private TextField txtDescriptionPlat;
-    @FXML
-    private TextField txtPrixPlat;
-    @FXML
-    private ComboBox<Category> comboCategory;
-    @FXML
-    private Button btnAjouterPlat;
-    @FXML
-    private Text actionStatus;
-    @FXML
-    private ImageView imageView;
-
-    @FXML
-    private Button consulterPlats;
-    private PlatServices platServices;
+    private PlatServices platServices = new PlatServices();
 
     @FXML
     public void initialize() {
-        platServices = new PlatServices();
         try {
             ObservableList<Category> categoryList = FXCollections.observableArrayList(platServices.fetchCategories());
             comboCategory.setItems(categoryList);
         } catch (SQLException e) {
-            actionStatus.setText("Erreur lors du chargement des catégories: " + e.getMessage());
+            actionStatus.setText("Error loading categories: " + e.getMessage());
         }
-        comboCategory.setCellFactory(lv -> new ListCell<Category>() {
-            @Override
-            protected void updateItem(Category category, boolean empty) {
-                super.updateItem(category, empty);
-                setText(empty ? null : category.getType());
-            }
-        });
-        comboCategory.setButtonCell(new ListCell<Category>() {
-            @Override
-            protected void updateItem(Category category, boolean empty) {
-                super.updateItem(category, empty);
-                setText(empty ? null : category.getType());
-            }
-        });
+    }
 
-    }
     @FXML
-    void consulterPlat(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPlats.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Afficher Catégorie");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Error loading AfficherPlats.fxml");
+    private void handleBrowseAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            txtImagePlat.setText(selectedFile.getAbsolutePath());
         }
     }
+
     @FXML
     void handleAjouterPlatAction(ActionEvent event) {
         try {
-            Category selectedCategory = comboCategory.getValue();
-            if (selectedCategory == null) {
-                showAlert(Alert.AlertType.WARNING, "Avertissement", "Veuillez sélectionner une catégorie.");
-                return;
-            }
-
             String nom = txtNomPlat.getText();
             String image = txtImagePlat.getText();
             String description = txtDescriptionPlat.getText();
-            String prixText = txtPrixPlat.getText();
-
-            if (nom.isEmpty() || image.isEmpty() || description.isEmpty() || prixText.isEmpty()) {
-                showAlert(Alert.AlertType.WARNING, "Avertissement", "Veuillez remplir tous les champs.");
-                return;
+            float prix = Float.parseFloat(txtPrixPlat.getText());
+            Category selectedCategory = comboCategory.getValue();
+            if (selectedCategory != null) {
+                Plat newPlat = new Plat(nom, description, prix, image, selectedCategory.getId());
+                platServices.ajouter(newPlat);
+                actionStatus.setText("Plat added successfully.");
+                Parent tablePlatParent = FXMLLoader.load(getClass().getResource("/TablePlat.fxml"));
+                Scene tablePlatScene = new Scene(tablePlatParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(tablePlatScene);
+                window.show();
+            } else {
+                actionStatus.setText("Please select a category.");
             }
-            //controle de saisie for price > 0
-            float prix = Float.parseFloat(prixText);
-            if (prix <= 0) {
-                showAlert(Alert.AlertType.WARNING, "Avertissement", "Le prix doit être supérieur à zéro.");
-                return;
-            }
-
-            Plat newPlat = new Plat();
-            newPlat.setNom(nom);
-            newPlat.setImage(image);
-            newPlat.setDescription(description);
-            newPlat.setPrix(prix);
-            newPlat.setId_restaurant(getSelectedRestaurantId());
-
-            platServices.ajouter(newPlat, selectedCategory.getId());
-            showAlert(Alert.AlertType.INFORMATION, "Succès", "Plat ajouté avec succès.");
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Format de nombre invalide pour le prix.");
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ajout du plat: " + e.getMessage());
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur: " + e.getMessage());
+            actionStatus.setText("Invalid number format in price.");
+        } catch (SQLException | IOException e) {
+            actionStatus.setText("Error adding plat: " + e.getMessage());
         }
     }
+    @FXML
+    private void handleGoBack(ActionEvent event) {
+        try {
+            Parent adminHomePageParent = FXMLLoader.load(getClass().getResource("/TablePlat.fxml"));
+            Scene adminHomePageScene = new Scene(adminHomePageParent);
 
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-    private int getSelectedRestaurantId() {
-        return 1;
+            window.setScene(adminHomePageScene);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

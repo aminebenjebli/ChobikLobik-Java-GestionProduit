@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="502.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCategorieAmine">
+<AnchorPane prefHeight="502.0" prefWidth="1020.0" stylesheets="@styles/GerantCat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCategorieAmine">
    <children>
       <Pane cache="true" layoutX="-6.0" prefHeight="502.0" prefWidth="1028.0" style="-fx-background-color: lightblue;">
          <children>
-            <ImageView fx:id="categoryImage" fitHeight="586.0" fitWidth="379.0" layoutX="649.0" layoutY="-65.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="categoryImage" fitHeight="436.0" fitWidth="243.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/fooood.jpeg" />
+                  <Image url="@images/hambergern.jpg" />
                </image>
             </ImageView>
-            <Text layoutX="14.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une Nouvelle Catégorie : " wrappingWidth="439.7367401123047">
+            <Text layoutX="294.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ajouter Une Nouvelle Catégorie : " wrappingWidth="439.7367401123047">
                <font>
                   <Font name="Javanese Text" size="26.0" />
                </font></Text>
-            <Text layoutX="46.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Catégorie :" wrappingWidth="163.73670196533203">
+            <Text layoutX="368.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Type Catégorie :" wrappingWidth="163.73670196533203">
                <font>
                   <Font name="Javanese Text" size="19.0" />
                </font>
             </Text>
-            <TextField fx:id="TypeCategoryField" layoutX="210.0" layoutY="299.0" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: #555555;" />
-            <Button layoutX="197.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#BtnAjouterCat" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: Green;" styleClass="green-button" text="Ajouter">
-               <font>
-                  <Font name="Lucida Console" size="15.0" />
-               </font></Button>
-            <Button fx:id="consulterCat" layoutX="197.0" layoutY="439.0" mnemonicParsing="false" onAction="#consulterCategorie" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: green;" text="Consulter Categories" />
-            <ImageView fx:id="logo" fitHeight="72.0" fitWidth="77.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="TypeCategoryField" layoutX="532.0" layoutY="251.0" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: #555555;" />
+            <ImageView fx:id="logo" fitHeight="72.0" fitWidth="77.0" layoutX="964.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Choubikloubik.png" />
+                  <Image url="@images/choubikloubik.png" />
                </image>
             </ImageView>
+            <BorderPane layoutX="6.0" layoutY="364.0" prefHeight="138.0" prefWidth="247.0">
+
+               <center>
+                  <Button mnemonicParsing="false" onMouseClicked="#BtnAjouterCat" prefHeight="25.0" prefWidth="149.0" styleClass="Button" text="Ajouter" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Lucida Console" size="15.0" />
+                     </font>
+                  </Button>
+               </center>
+            </BorderPane>
          </children>
       </Pane>
    </children>

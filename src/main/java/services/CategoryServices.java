@@ -25,6 +25,7 @@ public class CategoryServices implements ICategory<Category> {
         String req = "INSERT INTO category (type) VALUES(?)";
         try(PreparedStatement pst = connection.prepareStatement(req)){
             pst.setString(1, category.getType());
+
             pst.executeUpdate();
         }
     }

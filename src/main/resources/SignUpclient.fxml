@@ -1,35 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import java.net.URL?>
-
-<HBox fx:controller="controllers.SignUpClientController" xmlns:fx="http://javafx.com/fxml" spacing="20" alignment="CENTER">
-    <stylesheets>
-        <URL value="@styles/client.css" />
-    </stylesheets>
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>
-
-    <VBox id="imageSection" alignment="CENTER" spacing="10" fillWidth="true" HBox.hgrow="ALWAYS">
-        <ImageView fx:id="logoImage" fitWidth="80" preserveRatio="true"/>
-        <ImageView fx:id="myImageView" fitWidth="300" fitHeight="450" preserveRatio="false"/>
-    </VBox>
-
-    <!-- Form Section -->
-    <VBox id="formSection" fx:id="formVBox" styleClass="vbox-form" alignment="TOP_CENTER">
-        <Label text="Sign Up" styleClass="form-title"/>
-        <TextField fx:id="nomClient" promptText="Nom"/>
-        <TextField fx:id="prenomClient" promptText="Prenom"/>
-        <TextField fx:id="emailClient" promptText="Email"/>
-        <PasswordField fx:id="passwordClient" promptText="Password"/>
-        <TextField fx:id="usernameClient" promptText="Username"/>
-        <ComboBox fx:id="adresseClient" promptText="Adresse"/>
-        <TextField fx:id="numTelClient" promptText="Numéro de Téléphone"/>
-        <Button text="Sign Up as Client" onAction="#handleSignUpClient"/>
-        <Button fx:id="backButton" text="Back" onAction="#handleBackAction"/>
-    </VBox>
-</HBox>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpClientController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane prefHeight="834.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <ImageView fitHeight="429.0" fitWidth="439.0" layoutX="3.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/Choubikloubiik.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="75.0" fitWidth="70.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/choubikloubik.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#9bbbfc" fontSmoothingType="LCD" layoutX="18.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome !" wrappingWidth="245.0">
+                            <font>
+                                <Font name="Javanese Text" size="41.0" />
+                            </font>
+                        </Text>
+                        <Text fill="#9bbbfc" fontSmoothingType="LCD" layoutX="140.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dear Client" wrappingWidth="273.13671875">
+                            <font>
+                                <Font name="Javanese Text" size="41.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="437.0" prefHeight="834.0" prefWidth="465.0" style="-fx-background-color: lightblue;" stylesheets="@styles/client.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <TextField fx:id="nomClient" layoutX="153.0" layoutY="129.0" prefHeight="25.0" prefWidth="245.0" promptText="Nom" />
+                        <Label fx:id="nomError" layoutX="140.0" layoutY="180.0" prefHeight="17.0" prefWidth="273.0" styleClass="error-label" textFill="#802d18" />
+                        <TextField fx:id="prenomClient" layoutX="154.0" layoutY="211.0" prefHeight="25.0" prefWidth="245.0" promptText="Prenom" styleClass="text-field" />
+                        <Label fx:id="prenomError" layoutX="111.0" layoutY="260.0" prefHeight="21.0" prefWidth="300.0" styleClass="error-label" textFill="red" />
+                        <TextField fx:id="emailClient" layoutX="154.0" layoutY="290.0" prefHeight="25.0" prefWidth="245.0" promptText="Email" />
+                        <Label fx:id="emailError" layoutX="111.0" layoutY="343.0" prefHeight="17.0" prefWidth="300.0" styleClass="error-label" textFill="red" />
+                        <PasswordField fx:id="passwordClient" layoutX="154.0" layoutY="377.0" prefHeight="25.0" prefWidth="245.0" promptText="Password" />
+                        <Label fx:id="passwordError" layoutX="121.0" layoutY="435.0" prefHeight="17.0" prefWidth="300.0" styleClass="error-label" textFill="red" />
+                        <TextField fx:id="usernameClient" layoutX="153.0" layoutY="483.0" prefHeight="25.0" prefWidth="245.0" promptText="Username" />
+                        <Label fx:id="usernameError" layoutX="111.0" layoutY="520.0" prefHeight="17.0" prefWidth="300.0" styleClass="error-label" textFill="red" />
+                        <ComboBox fx:id="adresseClient" layoutX="228.0" layoutY="556.0" prefHeight="49.0" prefWidth="116.0" promptText="Adresse">
+                            <styleClass>
+                                <String fx:value="Combo-Box" />
+                                <String fx:value="combo-box" />
+                            </styleClass></ComboBox>
+                        <Label fx:id="adresseError" layoutX="160.0" layoutY="605.0" prefHeight="17.0" prefWidth="230.0" styleClass="error-label" textFill="red" />
+                        <TextField fx:id="numTelClient" layoutX="153.0" layoutY="626.0" prefHeight="34.0" prefWidth="245.0" promptText="Numéro de Téléphone" />
+                        <Label fx:id="numTelError" layoutX="120.0" layoutY="674.0" prefHeight="17.0" prefWidth="300.0" styleClass="error-label" textFill="red" />
+                        <Button layoutX="186.0" layoutY="698.0" onAction="#handleSignUpClient" prefHeight="44.0" prefWidth="198.0" styleClass="Button" text="Sign Up as Client" />
+                        <Button fx:id="backButton" layoutX="7.0" layoutY="14.0" onAction="#handleBackAction" prefHeight="34.0" prefWidth="116.0" styleClass="Button" text="Back" />
+                        <Text fill="#9bbbfc" layoutX="176.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up ! " textAlignment="CENTER" wrappingWidth="198.13671875">
+                            <font>
+                                <Font name="Javanese Text" size="29.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

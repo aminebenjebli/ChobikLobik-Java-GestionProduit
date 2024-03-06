@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+
+<VBox fx:controller="controllers.AllRestaurantPageController"
+      xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+      prefWidth="600" prefHeight="400">
+    <Button text="Go Back" onAction="#handleGoBack"/>
+    <ScrollPane fitToWidth="true" fitToHeight="true">
+        <FlowPane fx:id="restaurantCardsContainer" hgap="10" vgap="10" prefWrapLength="580">
+            <!-- Restaurant cards will be dynamically added here -->
+        </FlowPane>
+    </ScrollPane>
+</VBox>

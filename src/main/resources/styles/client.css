@@ -1,22 +1,14 @@
-.root {
-    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-    -fx-font-size: 14px;
-    -fx-background-color: #f2f2f2;
-}
-
-.button {
-    -fx-background-color: #5a9bd8;
+.Button {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #256874, #247D8C );
+    -fx-background-radius: 50;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
 }
-
-
-.button:hover {
-    -fx-background-color: #4a85c4;
+.Button:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #66CCDE , #17A9C3 );
+    -fx-text-fill: black;
 }
 
 .text-field, .password-field, .combo-box {
@@ -34,32 +26,18 @@
     -fx-alignment: top-right; /* Align labels to the right */
 }
 
-.hbox {
-    -fx-spacing: 20px; /* Spacing between images and form */
+.error-label {
+    -fx-text-fill: red !important;
 }
-
-.hbox > VBox {
-    -fx-spacing: 20px;
-    -fx-alignment: top-center;
+.Combo-Box:hover
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
 }
-
-/* Specific style for the VBox containing form elements */
-.vbox-form {
-    -fx-padding: 20px;
-    -fx-background-color: white;
-    -fx-background-radius: 5px;
-    -fx-spacing: 15px; /* Spacing between form elements */
-    -fx-alignment: top-center;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
-}
-
-#logoImage {
-    -fx-fit-width: 80px; /* Smaller logo size */
-    -fx-preserve-ratio: true;
-    -fx-margin-bottom: 20px; /* Space below the logo */
-}
-
-#myImageView {
-    -fx-max-height: 100%; /* Image takes full available height */
-    -fx-preserve-ratio: true;
+.Combo-Box:pressed
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
 }

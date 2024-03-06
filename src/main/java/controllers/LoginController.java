@@ -10,21 +10,22 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Admin;
 import models.Client;
 import models.Gerant;
 import models.Livreur;
-import services.Adminservices;
-import services.Clientservices;
-import services.GerantService;
+import services.*;
 import utils.SessionManager;
-import services.LivreurService;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginController {
 
+public class LoginController {
+    @FXML
+    private ImageView loginImage;
     @FXML private TextField usernameOrEmail;
     @FXML private PasswordField password;
     @FXML private Button loginButton;
@@ -34,14 +35,25 @@ public class LoginController {
     private LivreurService livreurService = new LivreurService();
     private GerantService gerantService = new GerantService();
 
-
+    public void initialize() {
+    }
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        String userEmail = usernameOrEmail.getText();
-        String userPass = password.getText();
-        boolean isAuthenticated = false;
+        String userEmail = usernameOrEmail.getText().trim();
+        String userPass = password.getText().trim();
 
+        if (userEmail.isEmpty() || userPass.isEmpty()) {
+            if (userEmail.isEmpty()) {
+                showError("Email field cannot be empty.");
+            }
+            if (userPass.isEmpty()) {
+                showError("Password field cannot be empty.");
+            }
+            return;
+        }
+
+        boolean isAuthenticated = false;
         try {
             if (clientService.authenticate(userEmail, userPass)) {
                 Client loggedInClient = clientService.getClientByUsernameOrEmail(userEmail);
@@ -58,8 +70,7 @@ public class LoginController {
                 SessionManager.setCurrentLivreur(loggedInLivreur);
                 redirectToLivreurHomePage();
                 isAuthenticated = true;
-             }
-            else if (gerantService.authenticateByEmail(userEmail, userPass)) {
+            } else if (gerantService.authenticateByEmail(userEmail, userPass)) {
                 Gerant loggedInGerant = gerantService.getGerantByEmail(userEmail);
                 SessionManager.setCurrentGerant(loggedInGerant);
                 redirectToGerantHomePage();
@@ -67,10 +78,12 @@ public class LoginController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            showError("Database error: " + e.getMessage());
+            return;
         }
 
         if (!isAuthenticated) {
-            showError("Invalid username or password.");
+            showError("Invalid email or password.");
         }
     }
 
@@ -79,6 +92,20 @@ public class LoginController {
         errorLabel.setVisible(true);
     }
 
+
+
+    public void handleBackAction(ActionEvent event) {
+        try {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/Showroom.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void redirectToLivreurHomePage() {
         try {
             System.out.println("Redirecting to livreur home page...");
@@ -91,48 +118,6 @@ public class LoginController {
 
         } catch (IOException e) {
             System.out.println("Failed to redirect to livreur home page.");
-            e.printStackTrace();
-        }
-    }
-    private void redirectToClientHomePage() {
-        try {
-            System.out.println("Redirecting to client home page...");
-
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/ClientHomePage.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Failed to redirect to client home page.");
-            e.printStackTrace();
-        }
-    }
-    private void redirectToAdminHomePage() {
-        try {
-            System.out.println("Redirecting to admin home page...");
-
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/AdminHomePage.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Failed to redirect to admin home page.");
-            e.printStackTrace();
-        }
-    }
-    public void handleBackAction(ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/Showroom.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -169,6 +154,39 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+    private void redirectToClientHomePage() {
+        try {
+            System.out.println("Redirecting to client home page...");
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/ClientHomePage.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Failed to redirect to client home page.");
+            e.printStackTrace();
+        }
+    }
+    private void redirectToAdminHomePage() {
+        try {
+            System.out.println("Redirecting to admin home page...");
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/AdminDashboard.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Failed to redirect to admin home page.");
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 }

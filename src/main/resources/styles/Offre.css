@@ -1,0 +1,25 @@
+.Button {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to bottom, #256874, #247D8C );
+    -fx-background-radius: 50;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+.Button:pressed {
+    -fx-background-color: linear-gradient(to bottom right, #66CCDE , #17A9C3 );
+    -fx-text-fill: black;
+}
+.Combo-Box:hover
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
+}
+.Combo-Box:pressed
+{
+    -fx-background-color :#256874 ;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
+}
+ 

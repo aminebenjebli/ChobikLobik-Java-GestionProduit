@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,28 +12,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="692.0" prefWidth="1103.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherCat">
+<AnchorPane prefHeight="1002" prefWidth="1401" style="-fx-background-color: lightblue;" stylesheets="@styles/GerantCat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherCat">
    <children>
-      <ImageView fx:id="imageview2" fitHeight="570.0" fitWidth="473.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageview2" fitHeight="740.0" fitWidth="587.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/The%20Most%20Ridiculous%20New%20Fast%20Food%20Menu%20Items%20of%202018.jpeg" />
+            <Image url="@images/hambergern.jpg" />
          </image></ImageView>
-      <TableView fx:id="TableViewCategory" layoutX="471.0" layoutY="256.0" prefHeight="452.0" prefWidth="632.0" style="-fx-background-color: #555555;">
+      <TableView fx:id="TableViewCategory" layoutX="587.0" layoutY="291.0" prefHeight="554.0" prefWidth="708.0" style="-fx-background-color: #555555;">
          <columns>
             <TableColumn fx:id="typeColumnCategorie" prefWidth="299.0" text="TYPE" />
             <TableColumn fx:id="actionColumnCategorie" prefWidth="408.0" text="Actions" />
          </columns>
+         <styleClass>
+            <String fx:value="table-row-cell" />
+            <String fx:value="column-header" />
+            <String fx:value="column-header-background" />
+            <String fx:value="table-view" />
+         </styleClass>
+         <Pagination fx:id="pagination" layoutX="471.0" layoutY="710.0" pageCount="10" />
+
       </TableView>
-      <TextField fx:id="RechercherCategorie" layoutX="891.0" layoutY="231.0" prefHeight="25.0" prefWidth="198.0" promptText="Rechercher ..." style="-fx-background-color: #555555;" />
+      <TextField fx:id="RechercherCategorie" layoutX="1097.0" layoutY="266.0" prefHeight="25.0" prefWidth="198.0" promptText="Rechercher ..." style="-fx-background-color: #555555;" text="Search.." />
       <ImageView fx:id="imageview" fitHeight="89.0" fitWidth="85.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../Projets_AmineBJ/src/src/main/resources/images/Choubikloubik.png" />
+            <Image url="@images/choubikloubik.png" />
          </image>
       </ImageView>
-      <Text fontSmoothingType="LCD" layoutX="21.0" layoutY="647.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Categories : " wrappingWidth="427.13671875">
+      <Text fontSmoothingType="LCD" layoutX="477.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Your Categories : " wrappingWidth="427.13671875">
          <font>
             <Font name="Javanese Text" size="46.0" />
          </font>
       </Text>
+      <Button fx:id="goBackButton" layoutX="157.0" layoutY="801.0" onAction="#handleGoBack" prefHeight="44.0" prefWidth="248.0" styleClass="Button" text="Go Back" />
+      <Button fx:id="back" layoutX="1059.0" layoutY="125.0" mnemonicParsing="false" onMouseClicked="#backToCat" prefHeight="44.0" prefWidth="248.0" styleClass="Button" text="Add Category" />
    </children>
 </AnchorPane>

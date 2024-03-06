@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserProfileController" alignment="TOP_CENTER" spacing="20" stylesheets="@styles/userprofile.css">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <VBox spacing="10">
+        <TextField fx:id="nomField" promptText="Name"/>
+        <TextField fx:id="prenomField" promptText="Surname"/>
+        <TextField fx:id="emailField" promptText="Email"/>
+        <PasswordField fx:id="passwordField" promptText="Password"/>
+        <ComboBox fx:id="addressComboBox" promptText="Address"/>
+        <TextField fx:id="numTelField" promptText="Phone Number"/>
+    </VBox>
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Update Profile" onAction="#handleUpdateProfileAction"/>
+        <Button text="Delete Account" onAction="#handleDeleteAccountAction"/>
+        <Button fx:id="goBackButton" text="Go Back" onAction="#handleGoBackAction"/>
+    </HBox>
+</VBox>

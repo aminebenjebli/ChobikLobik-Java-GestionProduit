@@ -1,0 +1,16 @@
+.plat-card, .offer-card {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-margin: 10;
+    -fx-background-color: #f0f0f0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.offer-card {
+    -fx-background-color: #ffecd1; /* Light orange for distinction */
+}
+
+.plat-card {
+    -fx-background-color: #e0f7fa; /* Light blue for distinction */
+}

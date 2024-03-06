@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -33,7 +34,20 @@ public class SignUpClientController {
     @FXML private TextField numTelClient;
     @FXML
     private ImageView myImageView;
-
+    @FXML
+    private Label nomError;
+    @FXML
+    private Label prenomError;
+    @FXML
+    private Label emailError;
+    @FXML
+    private Label passwordError;
+    @FXML
+    private Label usernameError;
+    @FXML
+    private Label adresseError;
+    @FXML
+    private Label numTelError;
 
     private Clientservices clientService = new Clientservices();
 
@@ -77,10 +91,40 @@ public class SignUpClientController {
         String selectedCity = adresseClient.getSelectionModel().getSelectedItem();
         String numTelString = numTelClient.getText();
 
-        // Validate the form input
-        if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || password.isEmpty() || username.isEmpty() || selectedCity == null || numTelString.isEmpty()) {
-            // Display an error message to the user
-            System.out.println("All fields are required.");
+        boolean isValid = true;
+
+        clearErrorLabels();
+
+        if (nom.isEmpty()) {
+            nomError.setText("Nom is required.");
+            isValid = false;
+        }
+        if (prenom.isEmpty()) {
+            prenomError.setText("Prenom is required.");
+            isValid = false;
+        }
+        if (email.isEmpty()) {
+            emailError.setText("Email is required.");
+            isValid = false;
+        }
+        if (password.isEmpty()) {
+            passwordError.setText("Password is required.");
+            isValid = false;
+        }
+        if (username.isEmpty()) {
+            usernameError.setText("Username is required.");
+            isValid = false;
+        }
+        if (selectedCity == null) {
+            adresseError.setText("Adresse is required.");
+            isValid = false;
+        }
+        if (numTelString.isEmpty()) {
+            numTelError.setText("NumTel is required.");
+            isValid = false;
+        }
+
+        if (!isValid) {
             return;
         }
 
@@ -88,21 +132,11 @@ public class SignUpClientController {
         try {
             numTel = Integer.parseInt(numTelString);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid phone number format.");
+            numTelError.setText("Invalid phone number format.");
             return;
         }
 
-
-        Client newClient = new Client(
-                nom,
-                prenom,
-                email,
-                password,
-                username,
-                selectedCity,
-                numTel,
-                new java.util.Date()
-        );
+        Client newClient = new Client(nom, prenom, email, password, username, selectedCity, numTel, new java.util.Date());
 
         try {
             clientService.ajouter(newClient);
@@ -112,6 +146,29 @@ public class SignUpClientController {
             e.printStackTrace();
             System.out.println("Failed to sign up the client.");
         }
+    }
+
+    private void clearErrorLabels() {
+        nomError.setText("");
+        prenomError.setText("");
+        emailError.setText("");
+        passwordError.setText("");
+        usernameError.setText("");
+        adresseError.setText("");
+        numTelError.setText("");
+
+        nomError.setStyle("");
+        prenomError.setStyle("");
+        emailError.setStyle("");
+        passwordError.setStyle("");
+        usernameError.setStyle("");
+        adresseError.setStyle("");
+        numTelError.setStyle("");
+    }
+
+    private void setError(Label label, String errorMessage) {
+        label.setText(errorMessage);
+        label.setStyle("-fx-text-fill: red;");
     }
     private void redirectToLogin(Node node) {
         try {

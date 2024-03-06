@@ -1,6 +1,7 @@
 package controllers;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,21 +10,25 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import models.Category;
 import services.CategoryServices;
 
 public class AfficherCat {
 
-    @FXML
-    private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+    private static final int ROWS_PER_PAGE = 10;
 
     @FXML
     private TextField RechercherCategorie;
@@ -36,12 +41,6 @@ public class AfficherCat {
 
     @FXML
     private TableColumn<Category, String> typeColumnCategorie;
-    @FXML
-    private ImageView imageview;
-
-    @FXML
-    private ImageView imageview2;
-
     private final CategoryServices cs = new CategoryServices();
 
     @FXML
@@ -49,7 +48,6 @@ public class AfficherCat {
         typeColumnCategorie.setCellValueFactory(new PropertyValueFactory<>("type"));
         setupActionColumn();
         refreshCategoryList();
-        // Ajouter un ChangeListener au champ de texte Rechercher
         RechercherCategorie.textProperty().addListener((observable, oldValue, newValue) -> {
             filterCategoryList(newValue);
         });
@@ -64,13 +62,13 @@ public class AfficherCat {
         }
     }
 
-    private void refreshCategoryList() {
+    public void refreshCategoryList() {
         try {
             List<Category> categories = cs.afficher();
             ObservableList<Category> categoryList = FXCollections.observableArrayList(categories);
             TableViewCategory.setItems(categoryList);
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle this exception properly
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Error refreshing category list.");
         }
     }
     private void setupActionColumn() {
@@ -116,7 +114,7 @@ public class AfficherCat {
             }
         });
     }
-    //***************************************************************************************************************************
+
     private void deleteCategory(Category category) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -142,5 +140,37 @@ public class AfficherCat {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void backToCat(MouseEvent event) {
+        showAddCategoryDialog();
+    }
+
+
+    private void showAddCategoryDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCategorieAmine.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Ajouter Catégorie");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            refreshCategoryList();
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Error loading AjouterCategorieAmine.fxml");
+        }
+    }
+    @FXML
+    private void handleGoBack(ActionEvent event) throws IOException {
+        Parent dashboard = FXMLLoader.load(getClass().getResource("/dashboard_restaurant.fxml"));
+        Scene dashboardScene = new Scene(dashboard);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(dashboardScene);
+        window.show();
+    }
+
+
+
 
 }

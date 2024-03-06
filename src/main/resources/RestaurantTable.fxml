@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.RestaurantTableController" prefHeight="400.0" prefWidth="600.0">
-    <VBox alignment="TOP_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Button fx:id="backButton" onAction="#handleBackAction" styleClass="back-button">
-            <graphic>
-                <StackPane>
-                    <Circle fill="#0078d7" radius="15" />
-                    <Text text="&lt;" fill="WHITE" style="-fx-font-weight: bold; -fx-font-size: 16;" />
-                </StackPane>
-            </graphic>
-        </Button>
-        <TableView fx:id="tableViewGerants">
-            <columns>
-                <TableColumn text="Username" fx:id="columnUsername" />
-                <TableColumn text="Name" fx:id="columnName" />
-                <TableColumn text="Description" fx:id="columnDescription" />
-                <TableColumn text="Document" fx:id="columnDocument" />
-                <TableColumn text="Image" fx:id="columnImage" />
-                <TableColumn text="Email" fx:id="columnEmail" />
-                <TableColumn text="Password" fx:id="columnPassword" />
-                <TableColumn text="Date" fx:id="columnDate" />
-                <TableColumn text="Actions" fx:id="columnActions" />
-            </columns>
-        </TableView>
-    </VBox>
+<AnchorPane prefHeight="750" prefWidth="1022" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RestaurantTableController">
+   <children>
+      <Button fx:id="backButton" layoutX="822.0" layoutY="21.0" onAction="#handleBackAction" prefHeight="44.0" prefWidth="162.0" styleClass="Button" stylesheets="@styles/addPlat.css" text="Back" />
+      <TableView fx:id="tableViewGerants" layoutX="56.0" layoutY="231.0" prefHeight="404.0" prefWidth="827.0" stylesheets="@styles/addPlat.css">
+         <columns>
+            <TableColumn fx:id="columnUsername" text="Username" />
+            <TableColumn fx:id="columnName" text="Name" />
+            <TableColumn fx:id="columnDescription" text="Description" />
+            <TableColumn fx:id="columnDocument" text="Document" />
+            <TableColumn fx:id="columnImage" text="Image" />
+            <TableColumn fx:id="columnEmail" text="Email" />
+            <TableColumn fx:id="columnPassword" text="Password" />
+            <TableColumn fx:id="columnDate" minWidth="0.0" prefWidth="97.0" text="Date" />
+            <TableColumn fx:id="columnActions" prefWidth="169.0" text="Actions" />
+         </columns>
+      </TableView>
+   </children>
 </AnchorPane>

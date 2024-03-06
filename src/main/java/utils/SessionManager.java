@@ -52,9 +52,4 @@ public class SessionManager {
         currentGerant = null; // Assuming you add support for Gerant in SessionManager
     }
 
-
-
-
-
-
 }

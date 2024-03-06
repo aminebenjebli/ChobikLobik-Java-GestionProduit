@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.ClientHomePageController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogoutAction" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20"/>
+<AnchorPane prefHeight="672.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientHomePageController">
+    <stylesheets>
+        <URL value="@styles/ClientHomePage.css" />
+    </stylesheets>
 
+    <!-- Top bar layout -->
+    <HBox alignment="CENTER_LEFT" spacing="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <!-- Logo image -->
+        <ImageView fx:id="logoImage" fitHeight="50" fitWidth="50" pickOnBounds="true" preserveRatio="true" />
+
+        <!-- Search bar -->
+        <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="704.0" promptText="Search..." HBox.hgrow="ALWAYS" />
+
+        <!-- Spacer to push the next items to the right -->
+        <Pane HBox.hgrow="ALWAYS" />
+
+        <!-- Profile circle with drop-down options -->
+        <MenuButton fx:id="profileMenu" styleClass="profile-circle" HBox.hgrow="NEVER">
+            <items>
+                <MenuItem onAction="#handleProfileAction" text="Profile" />
+                <MenuItem onAction="#handleLogoutAction" text="Logout" />
+            </items>
+            <!-- Profile image -->
+            <graphic>
+                <ImageView fx:id="profileImage" fitHeight="49.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" styleClass="circular-image" />
+            </graphic>
+        </MenuButton>
+    </HBox>
+    <VBox fx:id="searchResultsContainer" spacing="10">
+        <!-- This container will be used to display search results -->
+    </VBox>
+
+    <!-- Rest of the layout -->
+    <VBox spacing="10" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="70">
+        <ScrollPane fx:id="scrollPaneOffers" fitToWidth="true" prefHeight="139.0" prefWidth="852.0" styleClass="invisible-scroll-pane">
+            <content>
+                <HBox fx:id="offersContainer" spacing="10" />
+            </content>
+        </ScrollPane>
+        <Hyperlink fx:id="viewAllRestaurantsLink" onAction="#handleViewAllRestaurants" text="Voir tous les restaurants" styleClass="view-all-restaurants-link" />
+        <HBox fx:id="restaurantsContainer" spacing="10" />
+
+        <!-- Add the searchResultsContainer VBox here -->
+
+    </VBox>
 </AnchorPane>

@@ -1,0 +1,53 @@
+.payment-form {
+    -fx-background-color: #f2f2f2;
+}
+
+.payment-form .label {
+    -fx-font-size: 14px;
+}
+
+.payment-form .text {
+    -fx-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.payment-form .text-field {
+    -fx-padding: 10px;
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ccc;
+}
+
+.payment-form .text-field:focused {
+    -fx-border-color: #0078d7;
+}
+
+.payment-form .button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-padding: 15px 30px;
+    -fx-background-radius: 5px;
+}
+
+.payment-form .button:disabled {
+    -fx-background-color: #a0a0a0;
+}
+
+.payment-form .button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.payment-form .back-button .circle {
+    -fx-fill: #0078d7;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.payment-form .back-button .text {
+    -fx-fill: white;
+}
+
+.payment-form .label[visible=true] {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}

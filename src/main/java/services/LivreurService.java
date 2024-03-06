@@ -187,11 +187,10 @@ public class LivreurService {
             pst.setString(1, livreur.getNom());
             pst.setString(2, livreur.getPrenom());
             pst.setString(3, livreur.getEmail());
-            pst.setInt(4, cityId);
+            pst.setString(4, cityName);
             pst.setInt(5, livreur.getIdVehicule());
             pst.setInt(6, livreur.getIdZoneLivraison());
             pst.setInt(7, livreur.getNumTel());
-            // Assuming you're not updating the password or date
             pst.setInt(8, livreur.getId());
 
             pst.executeUpdate();

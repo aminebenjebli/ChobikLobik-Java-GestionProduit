@@ -1,0 +1,79 @@
+.card {
+    -fx-padding: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #2a80b9;
+    -fx-background-color: #e7f1fd;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);
+}
+
+.card:hover {
+    -fx-border-color: #276f9b;
+    -fx-background-color: #dce9f9;
+}
+
+.card-label {
+    -fx-text-fill: #2a3f5f;
+    -fx-font-weight: bold;
+}
+
+.offer-details-container {
+    spacing: 5;
+}
+.circular-image {
+    -fx-shape: "M50,0 A50,50 0 1,1 50,-0.1 Z"; /* Path for a circle */
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 50; /* Circle radius */
+}
+
+.profile-circle {
+    -fx-background-radius: 50; /* Circle radius */
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-max-width: 50;
+    -fx-max-height: 50;
+}
+.gerant-card {
+    -fx-border-color: #2196F3; /* Blue border */
+    -fx-border-width: 2;
+    -fx-background-color: #E3F2FD; /* Light blue background */
+    -fx-padding: 15px;
+    -fx-spacing: 10px; /* Space between child elements */
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+    -fx-border-radius: 10px; /* Rounded corners */
+    -fx-background-radius: 10px; /* Ensure the background fills rounded corners */
+}
+
+.gerant-card:hover {
+    -fx-background-color: #BBDEFB; /* Slightly darker blue on hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 10);
+}
+
+.gerant-card-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #0D47A1; /* Darker blue for text */
+    -fx-font-weight: bold;
+}
+.view-all-restaurants-link {
+    -fx-font-family: "My Custom Font";
+    -fx-font-size: 16px;
+    -fx-text-fill: #2196F3; /* Blue color */
+    -fx-underline: true; /* Ensure it's clear this is a clickable link */
+}
+
+.view-all-restaurants-link:hover {
+    -fx-text-fill: #1976D2; /* Darker blue on hover */
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+.search-result-card {
+    -fx-padding: 10px;
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 5);
+}
+

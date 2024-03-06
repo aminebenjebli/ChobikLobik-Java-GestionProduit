@@ -2,13 +2,16 @@ package services;
 
 import models.Admin;
 import utils.MyDatabase;
-
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Adminservices implements Iadmin<Admin> {
     private final Connection connection;
@@ -113,4 +116,31 @@ public class Adminservices implements Iadmin<Admin> {
         }
         return admins;
     }
+    public Admin getAdminById(int id) {
+        Admin admin = null;
+        String query = "SELECT * FROM admin WHERE id = ?"; // Corrected table name to match the ajouter method
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                admin = new Admin(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception as appropriate for your application
+        }
+        return admin;
+    }
+
+
+
+
+
 }
+

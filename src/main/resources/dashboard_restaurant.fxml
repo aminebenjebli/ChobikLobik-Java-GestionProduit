@@ -1,15 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.DashboardRestaurantController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogoutAction" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20"/>
-
-</AnchorPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1139.0" prefWidth="1659.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardRestaurantController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <left>
+                <AnchorPane prefHeight="956.0" prefWidth="259.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
+                    <children>
+                        <MenuButton layoutX="15.0" layoutY="84.0" prefHeight="123.0" prefWidth="214.0" styleClass="text-style" text="Tables">
+                            <items>
+                                <MenuItem fx:id="Plat" onAction="#openTable" text="Table Plat" />
+                                <MenuItem fx:id="Offres" onAction="#openTable" text="Table Offres" />
+                                <MenuItem fx:id="Commandes" onAction="#openTableCommandes" text="Table Commandes" />
+                                <MenuItem fx:id="reservations" onAction="#openTable" text="Table reservations" />
+                                <MenuItem fx:id="tables" onAction="#openTable" text="les tables" />
+                                <MenuItem fx:id="category" onAction="#openTable" text="Table category" />
+                            </items>
+                            <font>
+                                <Font name="Segoe Print" size="26.0" />
+                            </font>
+                        </MenuButton>
+                        <Label layoutX="44.0" layoutY="293.0" prefHeight="166.0" prefWidth="215.0" styleClass="text-style" text="Reclamation">
+                            <font>
+                                <Font name="Segoe Print Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="44.0" layoutY="469.0" prefHeight="174.0" prefWidth="208.0" styleClass="text-style" text="Sponsoring">
+                            <font>
+                                <Font name="Segoe Print Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="639.0" prefHeight="128.0" prefWidth="198.0" styleClass="text-style" text="Check Profile">
+                            <font>
+                                <Font name="Segoe Print" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="logoutLabel" layoutX="50.0" layoutY="771.0" onMouseClicked="#handleLogoutAction" prefHeight="154.0" prefWidth="194.0" styleClass="text-style" text="Logout">
+                            <font>
+                                <Font name="Segoe Print Bold" size="33.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="logoImage1" fitHeight="46.0" fitWidth="54.0" layoutX="123.0" layoutY="902.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </AnchorPane>
+            </left>
+            <top>
+                <AnchorPane prefHeight="21.0" prefWidth="1555.0" style="-fx-background-color: #F9CE69;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Circle fill="#d9eff7" layoutX="191.0" layoutY="56.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="160.0" layoutY="89.0" prefHeight="40.0" prefWidth="100.0" text="XFood">
+                            <font>
+                                <Font name="Javanese Text" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="548.0" layoutY="97.0" text="22000" textFill="#9bbbfc">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="511.0" layoutY="29.0" text="Total Orders" textFill="BLUE">
+                            <font>
+                                <Font name="Segoe Print Bold" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="1088.0" layoutY="94.0" text="1500" textFill="#9bbbfc">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="1291.0" layoutY="35.0" text="Total delivered" textFill="BLUE">
+                            <font>
+                                <Font name="Segoe Print Bold" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="1357.0" layoutY="93.0" text="1000" textFill="#9bbbfc">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="1026.0" layoutY="32.0" text="number Orders" textFill="BLUE">
+                            <font>
+                                <Font name="Segoe Print Bold" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="854.0" layoutY="97.0" prefHeight="27.0" prefWidth="53.0" text="780" textFill="#9bbbfc">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="777.0" layoutY="31.0" text="Orders on Hold" textFill="BLUE">
+                            <font>
+                                <Font name="Segoe Print Bold" size="25.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </top>
+            <center>
+                <Pane fx:id="paneGerant" prefHeight="916.0" prefWidth="1304.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="paneReservation" layoutX="-2.0" prefHeight="999.0" prefWidth="1404.0" />
+                  <Pane fx:id="paneGerant" layoutX="-5.0" prefHeight="999.0" prefWidth="1426.0" />
+                  <Pane fx:id="paneGerant1" prefHeight="999.0" prefWidth="1401.0" />
+                  <Pane fx:id="paneGerant11" layoutX="-1.0" layoutY="-1.0" prefHeight="1002.0" prefWidth="1401.0" />
+                  <Pane fx:id="paneTables" layoutX="-2.0" layoutY="-2.0" prefHeight="1000.0" prefWidth="1412.0" />
+               </children></Pane>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

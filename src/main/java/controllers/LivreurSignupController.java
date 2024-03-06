@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import models.Livreur;
 import services.LivreurService;
@@ -19,7 +21,8 @@ import java.time.LocalDate;
 
 
 public class LivreurSignupController {
-
+    @FXML
+    private ImageView signupImage;
     @FXML
     private TextField txtNom;
     @FXML
@@ -49,6 +52,14 @@ public class LivreurSignupController {
             e.printStackTrace();
             lblStatus.setText("Failed to load data: " + e.getMessage());
         }
+        try {
+            Image image = new Image(getClass().getResourceAsStream("/images/food.jpg"));
+            signupImage.setImage(image);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error loading image.");
+        }
     }
 
     private void populateComboBoxes() throws SQLException {
@@ -64,6 +75,18 @@ public class LivreurSignupController {
     @FXML
     private void handleSignup() {
         try {
+            if (txtNom.getText().isEmpty() ||
+                    txtPrenom.getText().isEmpty() ||
+                    txtEmail.getText().isEmpty() ||
+                    txtPassword.getText().isEmpty() ||
+                    cmbAdresse.getValue() == null ||
+                    cmbVehicule.getValue() == null ||
+                    cmbZoneLivraison.getValue() == null ||
+                    txtNumTel.getText().isEmpty()) {
+
+                lblStatus.setText("Please fill in all fields.");
+                return;
+            }
             int idVehicule = livreurService.findVehiculeIdByType(cmbVehicule.getValue());
             int idZoneLivraison = livreurService.findZoneLivraisonIdByName(cmbZoneLivraison.getValue());
             Livreur newLivreur = new Livreur(
@@ -90,6 +113,36 @@ public class LivreurSignupController {
         } catch (Exception e) {
             lblStatus.setText("Failed to redirect: " + e.getMessage());
         }
+    }
+    private String validateFields() {
+        StringBuilder errorMsg = new StringBuilder();
+
+        if (txtNom.getText().isEmpty()) {
+            errorMsg.append("Nom field is empty.\n");
+        }
+        if (txtPrenom.getText().isEmpty()) {
+            errorMsg.append("Prénom field is empty.\n");
+        }
+        if (txtEmail.getText().isEmpty()) {
+            errorMsg.append("Email field is empty.\n");
+        }
+        if (txtPassword.getText().isEmpty()) {
+            errorMsg.append("Password field is empty.\n");
+        }
+        if (cmbAdresse.getValue() == null || cmbAdresse.getValue().isEmpty()) {
+            errorMsg.append("Adresse field is empty.\n");
+        }
+        if (cmbVehicule.getValue() == null || cmbVehicule.getValue().isEmpty()) {
+            errorMsg.append("Type of Vehicle field is empty.\n");
+        }
+        if (cmbZoneLivraison.getValue() == null || cmbZoneLivraison.getValue().isEmpty()) {
+            errorMsg.append("Delivery Zone field is empty.\n");
+        }
+        if (txtNumTel.getText().isEmpty()) {
+            errorMsg.append("Phone Number field is empty.\n");
+        }
+
+        return errorMsg.toString();
     }
     private void redirectToLogin() {
         try {

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,6 +30,11 @@ public class GerantSignupController {
     @FXML private TextArea descriptionArea;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
+    @FXML private Label usernameErrorLabel;
+    @FXML private Label nameErrorLabel;
+    @FXML private Label descriptionErrorLabel;
+    @FXML private Label emailErrorLabel;
+    @FXML private Label passwordErrorLabel;
 
     private File documentFile;
     private File imageFile;
@@ -55,6 +61,42 @@ public class GerantSignupController {
 
     @FXML
     private void handleGerantSignUp(ActionEvent event) {
+        // Reset error messages
+        usernameErrorLabel.setVisible(false);
+        nameErrorLabel.setVisible(false);
+        descriptionErrorLabel.setVisible(false);
+        emailErrorLabel.setVisible(false);
+        passwordErrorLabel.setVisible(false);
+
+        // Check for empty fields
+        boolean hasError = false;
+        if (usernameField.getText().isEmpty()) {
+            usernameErrorLabel.setVisible(true);
+            hasError = true;
+        }
+        if (nameField.getText().isEmpty()) {
+            nameErrorLabel.setVisible(true);
+            hasError = true;
+        }
+        if (descriptionArea.getText().isEmpty()) {
+            descriptionErrorLabel.setVisible(true);
+            hasError = true;
+        }
+        if (emailField.getText().isEmpty()) {
+            emailErrorLabel.setVisible(true);
+            hasError = true;
+        }
+        if (passwordField.getText().isEmpty()) {
+            passwordErrorLabel.setVisible(true);
+            hasError = true;
+        }
+
+        // If any field is empty, stop sign-up process
+        if (hasError) {
+            return;
+        }
+
+        // Continue with sign-up process
         try {
             String documentFileName = saveFile(documentFile, "src/main/resources/images/");
             String imageFileName = saveFile(imageFile, "src/main/resources/images/");
@@ -68,6 +110,7 @@ public class GerantSignupController {
             e.printStackTrace();
         }
     }
+
 
     private String saveFile(File file, String dir) throws IOException {
         Path dest = Paths.get(dir + file.getName());
